@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mca-multicloud-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mca-multicloud-app
+  template:
+    metadata:
+      labels:
+        app: mca-multicloud-app
+    spec:
+      containers:
+      - name: mca-multicloud-container
+        image: mca-multicloud-app
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
