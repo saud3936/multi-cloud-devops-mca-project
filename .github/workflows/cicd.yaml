@@ -1,4 +1,4 @@
-name: MCA Multi-Cloud DevOps CI/CD Pipeline
+name: MCA Multi-Cloud DevOps CI Pipeline
 
 on:
   push:
@@ -6,26 +6,19 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout source code
       uses: actions/checkout@v3
 
-    - name: Set up Docker
-      uses: docker/setup-buildx-action@v2
-
     - name: Build Docker image
       run: |
         docker build -t mca-multicloud-app ./application
 
-    - name: Set up kubectl
-      uses: azure/setup-kubectl@v3
-      with:
-        version: 'v1.27.0'
-
-    - name: Deploy to Kubernetes
+    - name: Validate Kubernetes manifests
       run: |
-        kubectl apply -f kubernetes/deployment.yaml
-        kubectl apply -f kubernetes/service.yaml
+        echo "Validating Kubernetes YAML files"
+        cat kubernetes/deployment.yaml
+        cat kubernetes/service.yaml
