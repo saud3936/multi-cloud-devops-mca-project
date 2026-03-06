@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Multi-Cloud Application Deployment using DevOps Tools - MCA Project"
+    return "Updated Version – Deployed via Kubernetes"
 
 @app.route("/health")
 def health():
