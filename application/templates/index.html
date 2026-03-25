@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Task Manager</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<h1>Multi-Cloud Task Manager</h1>
+
+<form method="post" action="/add">
+<input type="text" name="task" placeholder="Enter new task" required>
+<button type="submit">Add Task</button>
+</form>
+
+<ul>
+
+{% for task in tasks %}
+
+<li>
+
+<span class="{% if task[2] %}done{% endif %}">
+{{ task[1] }}
+</span>
+
+<a href="/complete/{{task[0]}}">✔</a>
+<a href="/delete/{{task[0]}}">✖</a>
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+</body>
+</html>
