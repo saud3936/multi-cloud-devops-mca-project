@@ -15,6 +15,6 @@ spec:
       containers:
       - name: mca-multicloud-container
         image: mca-multicloud-app:v2
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000
